@@ -186,7 +186,7 @@ class MyText2Speech(ttkb.Window):
         # self.update()
         self.menuBar()
         self.basicControlForm()
-        self.advancedControlInfoForm()
+        # self.advancedControlInfoForm()
         self.advancedControlForm()
         # self.statusBar()
 
@@ -282,43 +282,43 @@ class MyText2Speech(ttkb.Window):
 
         return status
 
-    def advancedControlInfoForm(self) -> bool:
-        status:bool = False
+    # def advancedControlInfoForm(self) -> bool:
+    #     status:bool = False
 
-        try:
-            self.advancedControlInfoFormFrame = ttkb.Frame(master=self, borderwidth=5, relief=tk.SUNKEN)
-            self.advancedControlInfoFormFrame.grid(row=1, column=0, sticky="nsew")
+    #     try:
+    #         self.advancedControlInfoFormFrame = ttkb.Frame(master=self, borderwidth=5, relief=tk.SUNKEN)
+    #         self.advancedControlInfoFormFrame.grid(row=1, column=0, sticky="nsew")
 
-            self.labelRate   = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Rate (WPM:Words Per Minute)   : ")
-            self.labelRate.grid(row=0, column=0, sticky="nsew")
-            self.labelRateValue   = ttkb.Label(master=self.advancedControlInfoFormFrame, textvariable=self.rate)
-            self.labelRateValue.grid(row=0, column=1, sticky="nsew")
-            self.progressbarRate = ttkb.Progressbar(master=self.advancedControlInfoFormFrame, variable=self.rate, maximum=self.MAX_RATE, value=self.rate.get())
-            self.progressbarRate.grid(row=0, column=2, sticky="nsew")
+    #         self.labelRate   = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Rate (WPM:Words Per Minute)   : ")
+    #         self.labelRate.grid(row=0, column=0, sticky="nsew")
+    #         self.labelRateValue   = ttkb.Label(master=self.advancedControlInfoFormFrame, textvariable=self.rate)
+    #         self.labelRateValue.grid(row=0, column=1, sticky="nsew")
+    #         self.progressbarRate = ttkb.Progressbar(master=self.advancedControlInfoFormFrame, variable=self.rate, maximum=self.MAX_RATE, value=self.rate.get())
+    #         self.progressbarRate.grid(row=0, column=2, sticky="nsew")
 
-            self.labelVoice  = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Voice  : ")
-            self.labelVoice.grid(row=1, column=0, sticky="nsew")
-            self.labelVoiceValue  = ttkb.Label(master=self.advancedControlInfoFormFrame, text=f'{self.voiceName.get()}', textvariable=self.voiceName)
-            self.labelVoiceValue.grid(row=1, column=1, columnspan=2, sticky="nsew")
+    #         self.labelVoice  = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Voice  : ")
+    #         self.labelVoice.grid(row=1, column=0, sticky="nsew")
+    #         self.labelVoiceValue  = ttkb.Label(master=self.advancedControlInfoFormFrame, text=f'{self.voiceName.get()}', textvariable=self.voiceName)
+    #         self.labelVoiceValue.grid(row=1, column=1, columnspan=2, sticky="nsew")
 
-            self.labelVolume = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Volume : ")
-            self.labelVolume.grid(row=2, column=0, sticky="nsew")
-            self.labelVolumeValue = ttkb.Label(master=self.advancedControlInfoFormFrame, textvariable=self.volume)
-            self.labelVolumeValue.grid(row=2, column=1, sticky="nsew")
-            self.progressbarVolume = ttkb.Progressbar(master=self.advancedControlInfoFormFrame, variable=self.volume, maximum=self.MAX_VOLUME, value=self.volume.get())
-            self.progressbarVolume.grid(row=2, column=2, sticky="nsew")
-            # self.speakButton = ttkb.Button(master=self.controlFormFrame, text="Speak", command=self.t2s)
-            # self.speakButton.grid(row=0, column=0, sticky="ew")
+    #         self.labelVolume = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Volume : ")
+    #         self.labelVolume.grid(row=2, column=0, sticky="nsew")
+    #         self.labelVolumeValue = ttkb.Label(master=self.advancedControlInfoFormFrame, textvariable=self.volume)
+    #         self.labelVolumeValue.grid(row=2, column=1, sticky="nsew")
+    #         self.progressbarVolume = ttkb.Progressbar(master=self.advancedControlInfoFormFrame, variable=self.volume, maximum=self.MAX_VOLUME, value=self.volume.get())
+    #         self.progressbarVolume.grid(row=2, column=2, sticky="nsew")
+    #         # self.speakButton = ttkb.Button(master=self.controlFormFrame, text="Speak", command=self.t2s)
+    #         # self.speakButton.grid(row=0, column=0, sticky="ew")
 
-        except Exception as e:
-            status = False
-            traceback.print_exc()
-            tracebackStr:str = traceback.format_exc()
-            print(tracebackStr)
-        else:
-            status = True
+    #     except Exception as e:
+    #         status = False
+    #         traceback.print_exc()
+    #         tracebackStr:str = traceback.format_exc()
+    #         print(tracebackStr)
+    #     else:
+    #         status = True
 
-        return status
+    #     return status
 
     def advancedControlForm(self) -> bool:
         status:bool = False
@@ -327,24 +327,34 @@ class MyText2Speech(ttkb.Window):
             self.advancedControlFormFrame = ttkb.Frame(master=self, borderwidth=5, relief=tk.RAISED)
             self.advancedControlFormFrame.grid(row=2, column=0, sticky="nsew")
 
-            self.labelRate   = ttkb.Label(master=self.advancedControlFormFrame, text="Rate   : ")
+            self.advancedControlRateFormFrame = ttkb.Frame(master=self.advancedControlFormFrame, borderwidth=5, relief=tk.RAISED)
+            self.advancedControlRateFormFrame.grid(row=0, column=0, sticky="nsew")
+            self.labelRate   = ttkb.Label(master=self.advancedControlRateFormFrame, text="Rate (WPM:Words Per Minute)   : ")
             self.labelRate.grid(row=0, column=0, sticky="nsew")
-            # self.sliderRate = ttkb.Scale(self.advancedControlFormFrame, from_=self.MIN_RATE, to=self.MAX_RATE, variable=self.rate)
-            self.sliderRate = ttk.LabeledScale(self.advancedControlFormFrame, from_=self.MIN_RATE, to=self.MAX_RATE, variable=self.rate)
-            self.sliderRate.grid(row=0, column=1, columnspan=2, sticky="nsew")
+            # self.sliderRate = ttkb.Scale(self.advancedControlRateFormFrame, from_=self.MIN_RATE, to=self.MAX_RATE, variable=self.rate)
+            self.sliderRate = ttk.LabeledScale(self.advancedControlRateFormFrame, from_=self.MIN_RATE, to=self.MAX_RATE, variable=self.rate)
+            self.sliderRate.grid(row=0, column=1, sticky="nsew")
             # self.sliderRate.label.update()
+            self.progressbarRate = ttkb.Progressbar(master=self.advancedControlRateFormFrame, variable=self.rate, maximum=self.MAX_RATE, value=self.rate.get())
+            self.progressbarRate.grid(row=1, column=0, columnspan=2, sticky="nsew")
 
-            self.labelVoice  = ttkb.Label(master=self.advancedControlFormFrame, text="Voice  : ")
-            self.labelVoice.grid(row=1, column=0, columnspan=2, sticky="nsew")
-            self.comboVoice = ttkb.Combobox(master=self.advancedControlFormFrame, values=self.INIT_VOICE_NAMES, textvariable=self.voiceName, state="readonly")
-            self.comboVoice.grid(row=1, column=1, sticky="nsew")
+            self.advancedControlVoiceFormFrame = ttkb.Frame(master=self.advancedControlFormFrame, borderwidth=5, relief=tk.RAISED)
+            self.advancedControlVoiceFormFrame.grid(row=1, column=0, sticky="nsew")
+            self.labelVoice  = ttkb.Label(master=self.advancedControlVoiceFormFrame, text="Voice  : ")
+            self.labelVoice.grid(row=0, column=0, sticky="nsew")
+            self.comboVoice = ttkb.Combobox(master=self.advancedControlVoiceFormFrame, values=self.INIT_VOICE_NAMES, textvariable=self.voiceName, state="readonly")
+            self.comboVoice.grid(row=0, column=1, sticky="nsew")
             # self.comboVoice.bind("<<ComboboxSelected>>", self.updateVoiceName)
 
-            self.labelVolume = ttkb.Label(master=self.advancedControlFormFrame, text="Volume : ")
-            self.labelVolume.grid(row=2, column=0, sticky="nsew")
-            # self.sliderVolume = ttkb.Scale(self.advancedControlFormFrame, from_=self.MIN_VOLUME, to=self.MAX_VOLUME, variable=self.volume)
-            self.sliderVolume = ttk.LabeledScale(self.advancedControlFormFrame, from_=self.MIN_VOLUME, to=self.MAX_VOLUME, variable=self.volume)
-            self.sliderVolume.grid(row=2, column=1, columnspan=2, sticky="nsew")
+            self.advancedControlVolumeFormFrame = ttkb.Frame(master=self.advancedControlFormFrame, borderwidth=5, relief=tk.RAISED)
+            self.advancedControlVolumeFormFrame.grid(row=2, column=0, sticky="nsew")
+            self.labelVolume = ttkb.Label(master=self.advancedControlVolumeFormFrame, text="Volume : ")
+            self.labelVolume.grid(row=0, column=0, sticky="nsew")
+            # self.sliderVolume = ttkb.Scale(self.advancedControlVolumeFormFrame, from_=self.MIN_VOLUME, to=self.MAX_VOLUME, variable=self.volume)
+            self.sliderVolume = ttk.LabeledScale(self.advancedControlVolumeFormFrame, from_=self.MIN_VOLUME, to=self.MAX_VOLUME, variable=self.volume)
+            self.sliderVolume.grid(row=0, column=1, sticky="nsew")
+            self.progressbarVolume = ttkb.Progressbar(master=self.advancedControlVolumeFormFrame, variable=self.volume, maximum=self.MAX_VOLUME, value=self.volume.get())
+            self.progressbarVolume.grid(row=1, column=0, columnspan=2, sticky="nsew")
 
             # self.labelRate
             # self.speakButton = ttkb.Button(master=self.controlFormFrame, text="Speak", command=self.t2s)
