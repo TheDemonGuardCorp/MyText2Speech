@@ -54,8 +54,8 @@ from tkinter import filedialog as fd
 from tkinter import messagebox as mb
 
 from tkinter import ttk
-# import ttkbootstrap as ttkb          # pip install ttkbootstrap
-# from ttkbootstrap.constants import * # pip install ttkbootstrap
+import ttkbootstrap as ttkb          # pip install ttkbootstrap
+from ttkbootstrap.constants import * # pip install ttkbootstrap
 
 import os
 import sys
@@ -119,7 +119,7 @@ import pyttsx3 # pip install pyttsx3
 #     # Stop the engine
 #     engine.stop()
 
-class MyText2Speech(tk.Tk):
+class MyText2Speech(ttkb.Window):
     def __init__(self):
         super().__init__()
         self.title("Text2Speech")
@@ -259,17 +259,17 @@ class MyText2Speech(tk.Tk):
         status:bool = False
 
         try:
-            self.basicControlFormFrame = ttk.Frame(master=self)
+            self.basicControlFormFrame = ttkb.Frame(master=self)
             self.basicControlFormFrame.grid(row=0, column=0, sticky="nsew")
 
-            self.textBox = ttk.Entry(master=self.basicControlFormFrame, textvariable=self.textVoice) # , text="Enter your voice HERE"
+            self.textBox = ttkb.Entry(master=self.basicControlFormFrame, textvariable=self.textVoice) # , text="Enter your voice HERE"
             self.textBox.grid(row=0, column=0, sticky="nsew", rowspan=2)
             self.textBox.bind("<Return>", self.t2s)
 
-            self.speakButton = ttk.Button(master=self.basicControlFormFrame, text="Speak", command=self.t2s)
+            self.speakButton = ttkb.Button(master=self.basicControlFormFrame, text="Speak", command=self.t2s)
             self.speakButton.grid(row=0, column=1, sticky="ew")
 
-            self.save2MP3File = ttk.Button(master=self.basicControlFormFrame, text="Save2MP3File", command=self.s2f)
+            self.save2MP3File = ttkb.Button(master=self.basicControlFormFrame, text="Save2MP3File", command=self.s2f)
             self.save2MP3File.grid(row=1, column=1, sticky="ew")
 
         except Exception as e:
@@ -286,28 +286,28 @@ class MyText2Speech(tk.Tk):
         status:bool = False
 
         try:
-            self.advancedControlInfoFormFrame = ttk.Frame(master=self, borderwidth=5, relief=tk.SUNKEN)
+            self.advancedControlInfoFormFrame = ttkb.Frame(master=self, borderwidth=5, relief=tk.SUNKEN)
             self.advancedControlInfoFormFrame.grid(row=1, column=0, sticky="nsew")
 
-            self.labelRate   = ttk.Label(master=self.advancedControlInfoFormFrame, text="Rate (WPM:Words Per Minute)   : ")
+            self.labelRate   = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Rate (WPM:Words Per Minute)   : ")
             self.labelRate.grid(row=0, column=0, sticky="nsew")
-            self.labelRateValue   = ttk.Label(master=self.advancedControlInfoFormFrame, textvariable=self.rate)
+            self.labelRateValue   = ttkb.Label(master=self.advancedControlInfoFormFrame, textvariable=self.rate)
             self.labelRateValue.grid(row=0, column=1, sticky="nsew")
-            self.progressbarRate = ttk.Progressbar(master=self.advancedControlInfoFormFrame, variable=self.rate, maximum=self.MAX_RATE, value=self.rate.get())
+            self.progressbarRate = ttkb.Progressbar(master=self.advancedControlInfoFormFrame, variable=self.rate, maximum=self.MAX_RATE, value=self.rate.get())
             self.progressbarRate.grid(row=0, column=2, sticky="nsew")
 
-            self.labelVoice  = ttk.Label(master=self.advancedControlInfoFormFrame, text="Voice  : ")
+            self.labelVoice  = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Voice  : ")
             self.labelVoice.grid(row=1, column=0, sticky="nsew")
-            self.labelVoiceValue  = ttk.Label(master=self.advancedControlInfoFormFrame, text=f'{self.voiceName.get()}', textvariable=self.voiceName)
+            self.labelVoiceValue  = ttkb.Label(master=self.advancedControlInfoFormFrame, text=f'{self.voiceName.get()}', textvariable=self.voiceName)
             self.labelVoiceValue.grid(row=1, column=1, columnspan=2, sticky="nsew")
 
-            self.labelVolume = ttk.Label(master=self.advancedControlInfoFormFrame, text="Volume : ")
+            self.labelVolume = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Volume : ")
             self.labelVolume.grid(row=2, column=0, sticky="nsew")
-            self.labelVolumeValue = ttk.Label(master=self.advancedControlInfoFormFrame, textvariable=self.volume)
+            self.labelVolumeValue = ttkb.Label(master=self.advancedControlInfoFormFrame, textvariable=self.volume)
             self.labelVolumeValue.grid(row=2, column=1, sticky="nsew")
-            self.progressbarVolume = ttk.Progressbar(master=self.advancedControlInfoFormFrame, variable=self.volume, maximum=self.MAX_VOLUME, value=self.volume.get())
+            self.progressbarVolume = ttkb.Progressbar(master=self.advancedControlInfoFormFrame, variable=self.volume, maximum=self.MAX_VOLUME, value=self.volume.get())
             self.progressbarVolume.grid(row=2, column=2, sticky="nsew")
-            # self.speakButton = ttk.Button(master=self.controlFormFrame, text="Speak", command=self.t2s)
+            # self.speakButton = ttkb.Button(master=self.controlFormFrame, text="Speak", command=self.t2s)
             # self.speakButton.grid(row=0, column=0, sticky="ew")
 
         except Exception as e:
@@ -324,30 +324,30 @@ class MyText2Speech(tk.Tk):
         status:bool = False
 
         try:
-            self.advancedControlFormFrame = ttk.Frame(master=self, borderwidth=5, relief=tk.RAISED)
+            self.advancedControlFormFrame = ttkb.Frame(master=self, borderwidth=5, relief=tk.RAISED)
             self.advancedControlFormFrame.grid(row=2, column=0, sticky="nsew")
 
-            self.labelRate   = ttk.Label(master=self.advancedControlFormFrame, text="Rate   : ")
+            self.labelRate   = ttkb.Label(master=self.advancedControlFormFrame, text="Rate   : ")
             self.labelRate.grid(row=0, column=0, sticky="nsew")
-            # self.sliderRate = ttk.Scale(self.advancedControlFormFrame, from_=self.MIN_RATE, to=self.MAX_RATE, variable=self.rate)
+            # self.sliderRate = ttkb.Scale(self.advancedControlFormFrame, from_=self.MIN_RATE, to=self.MAX_RATE, variable=self.rate)
             self.sliderRate = ttk.LabeledScale(self.advancedControlFormFrame, from_=self.MIN_RATE, to=self.MAX_RATE, variable=self.rate)
             self.sliderRate.grid(row=0, column=1, columnspan=2, sticky="nsew")
             # self.sliderRate.label.update()
 
-            self.labelVoice  = ttk.Label(master=self.advancedControlFormFrame, text="Voice  : ")
+            self.labelVoice  = ttkb.Label(master=self.advancedControlFormFrame, text="Voice  : ")
             self.labelVoice.grid(row=1, column=0, columnspan=2, sticky="nsew")
-            self.comboVoice = ttk.Combobox(master=self.advancedControlFormFrame, values=self.INIT_VOICE_NAMES, textvariable=self.voiceName, state="readonly")
+            self.comboVoice = ttkb.Combobox(master=self.advancedControlFormFrame, values=self.INIT_VOICE_NAMES, textvariable=self.voiceName, state="readonly")
             self.comboVoice.grid(row=1, column=1, sticky="nsew")
             # self.comboVoice.bind("<<ComboboxSelected>>", self.updateVoiceName)
 
-            self.labelVolume = ttk.Label(master=self.advancedControlFormFrame, text="Volume : ")
+            self.labelVolume = ttkb.Label(master=self.advancedControlFormFrame, text="Volume : ")
             self.labelVolume.grid(row=2, column=0, sticky="nsew")
-            # self.sliderVolume = ttk.Scale(self.advancedControlFormFrame, from_=self.MIN_VOLUME, to=self.MAX_VOLUME, variable=self.volume)
+            # self.sliderVolume = ttkb.Scale(self.advancedControlFormFrame, from_=self.MIN_VOLUME, to=self.MAX_VOLUME, variable=self.volume)
             self.sliderVolume = ttk.LabeledScale(self.advancedControlFormFrame, from_=self.MIN_VOLUME, to=self.MAX_VOLUME, variable=self.volume)
             self.sliderVolume.grid(row=2, column=1, columnspan=2, sticky="nsew")
 
             # self.labelRate
-            # self.speakButton = ttk.Button(master=self.controlFormFrame, text="Speak", command=self.t2s)
+            # self.speakButton = ttkb.Button(master=self.controlFormFrame, text="Speak", command=self.t2s)
             # self.speakButton.grid(row=0, column=0, sticky="ew")
 
         except Exception as e:
@@ -364,7 +364,7 @@ class MyText2Speech(tk.Tk):
         status:bool = False
 
         try:
-            self.statusBarFrame = ttk.Frame(master=self, borderwidth=5, relief=tk.RAISED)
+            self.statusBarFrame = ttkb.Frame(master=self, borderwidth=5, relief=tk.RAISED)
             self.statusBarFrame.grid(row=2, column=0, sticky="nsew")
 
             self.status_label = tk.Label(master=self.statusBarFrame, text="Ready", bd=1, relief=tk.SUNKEN, anchor=tk.W)
