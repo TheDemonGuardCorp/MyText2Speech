@@ -158,15 +158,6 @@ class MyText2Speech(tk.Tk):
         #     if self.INIT_VOICE == id:
         #         self.INIT_VOICE_NAME  = voice.name
 
-        # s = 3
-        # char = '0'  # Padding character
-
-        # # Pad string to the left using a variable
-        # left_padded = f"{s:{char}>2}"
-        # print(left_padded)
-        _, s = self.fill2Left("5", "0")
-        print(s)
-
         _, self.INIT_VOICE_NAME = self.getVoiceNameFromVoiceID(self.INIT_VOICE, self.INIT_VOICES)
         _, self.INIT_VOICE_NAMES = self.getVoiceNames(self.INIT_VOICES)
 
@@ -201,12 +192,6 @@ class MyText2Speech(tk.Tk):
 
         self.update()
         self.resetAllValues()
-        
-        # frame0 = InputForm(self)
-        # frame0.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
-
-        # frame1 = ControlForm(self)
-        # frame1.grid(row=1, column=0, sticky="nsew", padx=5, pady=5)
 
     def menuBar(self) -> bool:
         status:bool = False
@@ -897,103 +882,10 @@ class MyText2Speech(tk.Tk):
     def showAboutDialog(self, event:tk.Event=None):
         mb.showinfo("About", f"Created : 2025/04/25\nVersion : {self.VERSION}\nPython Version : {self.PYTHON_VERSION}\nTKinter Version : {self.TKINTER_VERSION}")
 
-class InputForm(ttk.Frame):
-    def __init__(self, parent):
-        super().__init__()
-        self.columnconfigure(0, weight=1)
-        self.rowconfigure(1, weight=1)
-
-        self.textarea = tk.Text(self)
-        self.textarea.grid(row=0, column=0, sticky="ew")
-
-        # entry.bind("<Return>", add_to_list)
-        self.textarea.bind("<Return>", lambda event : self.add_to_list())
-
-class ControlForm(ttk.Frame):
-    def __init__(self, parent):
-        super().__init__()
-        self.columnconfigure(0, weight=1)
-        self.rowconfigure(1, weight=1)
-        self.entry_btn = ttk.Button(self, text="Add", command=self.add_to_list)
-        self.entry_btn.grid(row=0, column=1)
-
-        self.clear_btn = ttk.Button(self, text="Clear", command=self.clear_list)
-        self.clear_btn.grid(row=0, column=2)
-
-        self.text_list = tk.Listbox(self)
-        self.text_list.grid(row=1, column=0, columnspan=3, sticky="nsew")        
-
-    def add_to_list(self, _event=None):
-        text = self.entry.get()
-
-        if text:
-            self.text_list.insert(tk.END, text)
-            self.entry.delete(0, tk.END)
-
-    def clear_list(self):
-        self.text_list.delete(0, tk.END)
-
-def voidInfo():
-    engine = pyttsx3.init() # Object creation
-
-    rate = engine.getProperty('rate')
-    print(f'Current speaking rate   : {rate}')
-
-    voice = engine.getProperty('voice')
-    print(f'Current speaking voice  : {voice}')
-
-    volume = engine.getProperty('volume')
-    print(f'Current speaking volume : {volume}')
-
-    voices = engine.getProperty('voices')
-
-    # for voice in voices:
-    #     engine.setProperty('rate', 130)
-    #     rate = engine.getProperty('rate')
-
-    #     genders = [voice.gender, 'male', 'female', 'neutral']
-    #     ages = [10, 20, 30, 50]
-
-    #     for tmp_age in ages:
-
-    #         age = tmp_age # voice.age # engine.getProperty('voice', voice.age)
-    #         gender = voice.gender # engine.getProperty('voice', voice.gender)
-    #         id = voice.id # engine.getProperty('voice', voice.id)
-    #         languages = voice.languages # engine.getProperty('voice', voice.languages)
-    #         name = voice.name # engine.getProperty('voice', voice.name)
-
-    #         print('*******')
-    #         print(f'Current speaking rate         : {rate}')
-    #         print(f'Current speaking voice age    : {age}')
-    #         print(f'Current speaking voice gender : {gender}')
-    #         print(f'Current speaking voice id     : {id}')
-    #         print(f'Current speaking voice name   : {name}')
-
-    #         voice.age = age
-    #         voice.gender = gender
-    #         voice.id = id
-    #         voice.name = name
-    #         engine.setProperty('age', voice.id)  # Selecting a female voice # Change to female voice
-
-    #         engine.say(f'Current speaking voice age    : {age}')
-    #         engine.runAndWait()
-    #         engine.say(f'Current speaking voice gender : {gender}')
-    #         engine.runAndWait()
-    #         engine.say(f'Current speaking voice id     : {id}')
-    #         engine.runAndWait()
-    #         engine.say(f'Current speaking voice name   : {name}')
-    #         # engine.say(f'My current speaking rate is {rate}')
-    #         # Run the speech engine
-    #         engine.runAndWait()
-
-    #         for language in languages:
-    #             print(f'Current speaking voice: {language}')
-
 def main():
     print("Hello World!!")
     app = MyText2Speech()
     app.mainloop()
-    # voidInfo()
 
 if __name__ == "__main__":
     main()
