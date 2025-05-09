@@ -76,49 +76,6 @@ import pyttsx3 # pip install pyttsx3
 #
 # sudo apt update && sudo apt install espeak ffmpeg libespeak1
 
-# def t2s():
-#     # Initialize the engine
-#     engine = pyttsx3.init() # Object creation
-
-#     # Adjust speaking rate
-#     # Getting the current speaking rate
-#     rate = engine.getProperty('rate')
-#     print(f'Current speaking rate: {rate}')
-#     # Setting a new speaking rate
-#     engine.setProperty('rate', 125)
-
-#     # Adjust volume
-#     # Getting the current volume level
-#     volume = engine.getProperty('volume')
-#     print(f'Current volume level: {volume}')
-#     # Setting a new volume level
-#     engine.setProperty('volume', 1.0)
-
-#     # Change voice
-#     # Getting the list of available voices
-#     voices = engine.getProperty('voices')
-#     # Selecting a voice (0 for male, 1 for female, etc.)
-#     engine.setProperty('voice', voices[1].id)  # Selecting a female voice # Change to female voice
-
-#     # Make the engine speak
-#     # Adding text to be spoken
-#     engine.say("Hello World!")
-#     # Run the speech engine
-#     engine.runAndWait()
-#     # engine.stop()
-#     engine.say(f'My current speaking rate is {rate}')
-#     # Run the speech engine
-#     engine.runAndWait()
-#     # engine.stop()
-
-#     # Save to a file
-#     # Saving speech to an audio file
-#     engine.save_to_file('Hello World', 'test.mp3')
-#     engine.runAndWait()
-
-#     # Stop the engine
-#     engine.stop()
-
 class MyText2Speech(ttkb.Window):
     def __init__(self):
         super().__init__()
@@ -151,12 +108,6 @@ class MyText2Speech(ttkb.Window):
         self.INIT_VOLUME:float     = self.ENGINE.getProperty('volume')
         self.INIT_VOICES:list      = self.ENGINE.getProperty('voices')
         self.INIT_VOICE_NAME:str   = None
-
-        # for voice in self.INIT_VOICES:
-        #     id = voice.id
-        #     name = None
-        #     if self.INIT_VOICE == id:
-        #         self.INIT_VOICE_NAME  = voice.name
 
         _, self.INIT_VOICE_NAME = self.getVoiceNameFromVoiceID(self.INIT_VOICE, self.INIT_VOICES)
         _, self.INIT_VOICE_NAMES = self.getVoiceNames(self.INIT_VOICES)
@@ -281,44 +232,6 @@ class MyText2Speech(ttkb.Window):
             status = True
 
         return status
-
-    # def advancedControlInfoForm(self) -> bool:
-    #     status:bool = False
-
-    #     try:
-    #         self.advancedControlInfoFormFrame = ttkb.Frame(master=self, borderwidth=5, relief=tk.SUNKEN)
-    #         self.advancedControlInfoFormFrame.grid(row=1, column=0, sticky="nsew")
-
-    #         self.labelRate   = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Rate (WPM:Words Per Minute)   : ")
-    #         self.labelRate.grid(row=0, column=0, sticky="nsew")
-    #         self.labelRateValue   = ttkb.Label(master=self.advancedControlInfoFormFrame, textvariable=self.rate)
-    #         self.labelRateValue.grid(row=0, column=1, sticky="nsew")
-    #         self.progressbarRate = ttkb.Progressbar(master=self.advancedControlInfoFormFrame, variable=self.rate, maximum=self.MAX_RATE, value=self.rate.get())
-    #         self.progressbarRate.grid(row=0, column=2, sticky="nsew")
-
-    #         self.labelVoice  = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Voice  : ")
-    #         self.labelVoice.grid(row=1, column=0, sticky="nsew")
-    #         self.labelVoiceValue  = ttkb.Label(master=self.advancedControlInfoFormFrame, text=f'{self.voiceName.get()}', textvariable=self.voiceName)
-    #         self.labelVoiceValue.grid(row=1, column=1, columnspan=2, sticky="nsew")
-
-    #         self.labelVolume = ttkb.Label(master=self.advancedControlInfoFormFrame, text="Volume : ")
-    #         self.labelVolume.grid(row=2, column=0, sticky="nsew")
-    #         self.labelVolumeValue = ttkb.Label(master=self.advancedControlInfoFormFrame, textvariable=self.volume)
-    #         self.labelVolumeValue.grid(row=2, column=1, sticky="nsew")
-    #         self.progressbarVolume = ttkb.Progressbar(master=self.advancedControlInfoFormFrame, variable=self.volume, maximum=self.MAX_VOLUME, value=self.volume.get())
-    #         self.progressbarVolume.grid(row=2, column=2, sticky="nsew")
-    #         # self.speakButton = ttkb.Button(master=self.controlFormFrame, text="Speak", command=self.t2s)
-    #         # self.speakButton.grid(row=0, column=0, sticky="ew")
-
-    #     except Exception as e:
-    #         status = False
-    #         traceback.print_exc()
-    #         tracebackStr:str = traceback.format_exc()
-    #         print(tracebackStr)
-    #     else:
-    #         status = True
-
-    #     return status
 
     def advancedControlForm(self) -> bool:
         status:bool = False
@@ -501,23 +414,6 @@ class MyText2Speech(ttkb.Window):
 
         return status
 
-    # def resetVoiceName(self) -> bool:
-    #     status:bool = False
-
-    #     try:
-    #         self.voiceName.set(self.INIT_VOICE_NAME)
-    #         # time.sleep(1)
-
-    #     except Exception as e:
-    #         status = False
-    #         traceback.print_exc()
-    #         tracebackStr:str = traceback.format_exc()
-    #         print(tracebackStr)
-    #     else:
-    #         status = True
-
-    #     return status
-
     def resetAllValues(self, event:tk.Event=None) -> bool:
         status:bool = False
 
@@ -596,29 +492,6 @@ class MyText2Speech(ttkb.Window):
             status = True
 
         return status, voiceNames
-
-    # def updateVoiceName(self, event:tk.Event=None) -> tuple[bool, str, str]:
-    #     status:bool = False
-    #     voiceName:str = None
-    #     voiceID:str   = None
-
-    #     try:
-    #         # voiceName  = self.comboVoice.get()
-    #         # _, voiceID = self.getVoiceIDFromVoiceName(voiceName, self.INIT_VOICES)
-    #         # self.voiceName.set(voiceName)
-    #         # self.voice.set(voiceID)
-
-    #         print(f'updateVoiceName voiceName {self.voiceName.get()}')
-    #         print(f'updateVoiceName voiceID {self.voice.get()}')
-    #     except Exception as e:
-    #         status = False
-    #         traceback.print_exc()
-    #         tracebackStr:str = traceback.format_exc()
-    #         print(tracebackStr)
-    #     else:
-    #         status = True
-
-    #     return status, voiceName, voiceID
 
     def updatePyttsx3Properties(self) -> bool:
         status:bool = False
@@ -710,34 +583,6 @@ class MyText2Speech(ttkb.Window):
             self.updatePyttsx3Properties()
             tmp_textVoice = self.textVoice.get()
             print(f'Current speaking text: {tmp_textVoice}')
-
-            # now:str = str(datetime.now())
-            # tmpDateTime:datetime = datetime.fromisoformat(now)
-            # _, month  = self.fill2Left(tmpDateTime.month, '0')
-            # _, day    = self.fill2Left(tmpDateTime.day, '0')
-            # _, hour   = self.fill2Left(tmpDateTime.hour, '0')
-            # _, minute = self.fill2Left(tmpDateTime.minute, '0')
-            # _, second = self.fill2Left(tmpDateTime.second, '0')
-            # tmpFileName:str = f'{tmpDateTime.year}{month}{day}_{hour}{minute}{second}.mp3'
-            # # tmpFileName:str = f'{tmpDateTime.year}{tmpDateTime.month}{tmpDateTime.day}_{tmpDateTime.hour}{tmpDateTime.minute}{tmpDateTime.second}.mp3'
-            # print(tmpDateTime.year)
-            # print(tmpDateTime.month)
-            # print(tmpDateTime.day)
-            # print(tmpDateTime.hour)
-            # print(tmpDateTime.minute)
-            # print(tmpDateTime.second)
-            # print(tmpFileName)
-            # print(now)
-            # _, tmpFileName = self.generateFileName()
-            # fileSavePathFileName:str = pathlib.Path(f'{self.fileSavePath.get()}/{tmpFileName}')
-            # print(fileSavePathFileName)
-            # my_filetypes = [('all files', '.*'), ('mp3 files', '.mp3')]
-            # directory = fd.askdirectory(parent=self,
-            #                         initialdir=os.getcwd(),
-            #                         title="Please select a directory:")
-
-            # # name= fd.askopenfilename()
-            # print(f'directory : {directory} ({len(directory)})')
 
             # Save to a file
             # Saving speech to an audio file
@@ -842,41 +687,9 @@ class MyText2Speech(ttkb.Window):
             tmp_textVoice = self.textVoice.get()
             print(f'Current speaking text: {tmp_textVoice}')
 
-            # now:str = str(datetime.now())
-            # tmpDateTime:datetime = datetime.fromisoformat(now)
-            # _, month  = self.fill2Left(tmpDateTime.month, '0')
-            # _, day    = self.fill2Left(tmpDateTime.day, '0')
-            # _, hour   = self.fill2Left(tmpDateTime.hour, '0')
-            # _, minute = self.fill2Left(tmpDateTime.minute, '0')
-            # _, second = self.fill2Left(tmpDateTime.second, '0')
-            # tmpFileName:str = f'{tmpDateTime.year}{month}{day}_{hour}{minute}{second}.mp3'
-            # # tmpFileName:str = f'{tmpDateTime.year}{tmpDateTime.month}{tmpDateTime.day}_{tmpDateTime.hour}{tmpDateTime.minute}{tmpDateTime.second}.mp3'
-            # print(tmpDateTime.year)
-            # print(tmpDateTime.month)
-            # print(tmpDateTime.day)
-            # print(tmpDateTime.hour)
-            # print(tmpDateTime.minute)
-            # print(tmpDateTime.second)
-            # print(tmpFileName)
-            # print(now)
             _, tmpFileName = self.generateFileName()
             fileSavePathFileName:str = pathlib.Path(f'{self.fileSavePath.get()}/{tmpFileName}')
             print(fileSavePathFileName)
-            # my_filetypes = [('all files', '.*'), ('mp3 files', '.mp3')]
-            # directory = fd.askdirectory(parent=self,
-            #                         initialdir=os.getcwd(),
-            #                         title="Please select a directory:")
-
-            # # name= fd.askopenfilename()
-            # print(f'directory : {directory} ({len(directory)})')
-
-            # Save to a file
-            # Saving speech to an audio file
-            # self.ENGINE.save_to_file(f'{tmp_textVoice}', f'{fileSavePathFileName}')
-            # self.ENGINE.runAndWait()
-
-            # # Stop the engine
-            # self.ENGINE.stop()
             self.speech2file(fileSavePathFileName)
 
         except Exception as e:
